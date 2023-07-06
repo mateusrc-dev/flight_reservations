@@ -16,7 +16,6 @@ defmodule FlightReservations.Factory do
 
   def booking_factory do
     id = UUID.uuid4()
-    user_id = UUID.uuid4()
     naive_date = NaiveDateTime.local_now()
 
     %Booking{
@@ -24,7 +23,7 @@ defmodule FlightReservations.Factory do
       complete_date: naive_date,
       local_origin: "Teresina",
       local_destination: "Fortaleza",
-      user_id: user_id
+      user_id: "1"
     }
   end
 end
