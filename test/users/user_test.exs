@@ -2,6 +2,7 @@ defmodule FlightReservations.Users.UserTest do
   use ExUnit.Case
 
   alias FlightReservations.Users.User
+  # import FlightReservations.Factory
 
   describe "build/1" do
     test "when all the params are valid, returns the user" do
