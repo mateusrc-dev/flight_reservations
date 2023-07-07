@@ -9,6 +9,8 @@ defmodule FlightReservations.Bookings.Agent do
 
   def save(%Booking{} = booking) do
     Agent.update(__MODULE__, fn state -> update_state(state, booking) end)
+
+    {:ok, %Booking{} = booking}
   end
 
   def get_all() do
