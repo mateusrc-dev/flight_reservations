@@ -12,7 +12,6 @@ defmodule FlightReservations.Bookings.Report do
     BookingAgent.get_all()
     |> Map.values()
     |> Enum.map(fn booking -> booking_string(booking) end)
-    |> IO.inspect()
   end
 
   defp booking_string(%Booking{
