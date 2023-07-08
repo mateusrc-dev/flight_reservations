@@ -9,11 +9,16 @@ defmodule FlightReservations.Bookings.Report do
   end
 
   def report_by_date(from_date, to_date) do
-    "report.csv"
-    |> File.stream!()
-    |> Enum.map(fn line -> parse_line(line) end)
-    |> Enum.map(fn line -> gen_report(line, from_date, to_date) end)
-    |> Enum.filter(fn elem -> elem !== nil end)
+    bookings_list_by_date =
+      "report.csv"
+      |> File.stream!()
+      |> Enum.map(fn line -> parse_line(line) end)
+      |> Enum.map(fn line -> gen_report(line, from_date, to_date) end)
+      |> Enum.filter(fn elem -> elem !== nil end)
+
+    File.write("report_by_date.csv", bookings_list_by_date)
+
+    {:ok, "Report generated successfully"}
   end
 
   defp parse_line(line) do
