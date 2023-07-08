@@ -5,7 +5,7 @@ defmodule FlightReservations.MixProject do
     [
       app: :flight_reservations,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.15.2",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps()
