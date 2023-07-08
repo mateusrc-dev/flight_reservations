@@ -33,4 +33,14 @@ defmodule FlightReservations.Bookings.ReportTest do
       assert {:ok, _text} = response
     end
   end
+
+  describe "report_by_date/2" do
+    test "creates the report by date file" do
+      response = Report.report_by_date("2023-05-07 13:20:35", "2023-07-07 13:20:35")
+
+      expected_response = {:ok, "Report generated successfully"}
+
+      assert response == expected_response
+    end
+  end
 end
