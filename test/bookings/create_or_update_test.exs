@@ -19,7 +19,19 @@ defmodule FlightReservations.Bookings.CreateOrUpdateTest do
 
       response = CreateOrUpdate.call(params)
 
-      expected_response = {:ok, 'Booking created or updated with success'}
+      expected_response = {:ok, ~c"Booking created or updated with success"}
+
+      assert response == expected_response
+    end
+
+    test "when there are param is invalid, returns an error" do
+      user = build(:user)
+      UserAgent.save(user)
+      params = %{local_origin: 1, local_destination: "Fortaleza", user_id: user.id}
+
+      response = CreateOrUpdate.call(params)
+
+      expected_response = {:error, ~c"Invalid parameters."}
 
       assert response == expected_response
     end

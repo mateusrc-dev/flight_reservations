@@ -39,4 +39,33 @@ defmodule FlightReservations.Users.AgentTest do
       assert response == expected_response
     end
   end
+
+  describe "get_all/1" do
+    setup do
+      UserAgent.start_link(%{})
+
+      :ok
+    end
+
+    test "returns all users" do
+      user = build(:user)
+      UserAgent.save(user)
+      user = build(:user)
+      UserAgent.save(user)
+      user = build(:user)
+      UserAgent.save(user)
+
+      response = UserAgent.get_all()
+
+      assert [%User{}, %User{}, %User{}] = Map.values(response)
+    end
+
+    test "when the user is not found, returns an error" do
+      response = UserAgent.get("000000000")
+
+      expected_response = {:error, "User not found"}
+
+      assert response == expected_response
+    end
+  end
 end

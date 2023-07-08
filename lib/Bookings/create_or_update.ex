@@ -8,17 +8,21 @@ defmodule FlightReservations.Bookings.CreateOrUpdate do
          {:ok, %Booking{} = booking} <- Booking.build(local_origin, local_destination, user_id) do
       save_booking({:ok, booking})
     else
-      error -> error
+      error ->
+        error
     end
   end
 
   defp save_booking({:ok, %Booking{} = booking}) do
     BookingAgent.save(booking)
 
-    {:ok, 'Booking created or updated with success'}
+    {:ok, ~c"Booking created or updated with success"}
   end
 
+  # coveralls-ignore-start
   defp save_booking({:error, _reason = error}) do
     {:error, error}
   end
+
+  # coveralls-ignore-stop
 end

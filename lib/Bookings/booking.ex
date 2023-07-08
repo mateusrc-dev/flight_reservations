@@ -5,7 +5,9 @@ defmodule FlightReservations.Bookings.Booking do
 
   defstruct @keys
 
-  def build(local_origin, local_destination, user_id) when is_bitstring(user_id) do
+  def build(local_origin, local_destination, user_id)
+      when is_bitstring(user_id) and is_bitstring(local_origin) and
+             is_bitstring(local_destination) do
     uuid = UUID.uuid4()
     naive_date = NaiveDateTime.local_now()
 
@@ -22,6 +24,6 @@ defmodule FlightReservations.Bookings.Booking do
   end
 
   def build(_local_origin, _local_destination, _user_id) do
-    {:error, 'Invalid parameters.'}
+    {:error, ~c"Invalid parameters."}
   end
 end
